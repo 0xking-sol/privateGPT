@@ -3,6 +3,8 @@ Ask questions to your documents without an internet connection, using the power 
 
 Built with [LangChain](https://github.com/hwchase17/langchain) and [GPT4All](https://github.com/nomic-ai/gpt4all)
 
+<img width="902" alt="demo" src="https://user-images.githubusercontent.com/721666/236942256-985801c9-25b9-48ef-80be-3acbb4575164.png">
+
 # Environment Setup
 
 In order to set your environment up to run the code here, first install all requirements:
@@ -47,7 +49,7 @@ And wait for the script to require your input.
 > Enter a query:
 ```
 
-Hit enter. You'll see the LLM print the context it is using from your documents and then the final answer; you can then ask another question without re-running the script, just wait for the prompt again. 
+Hit enter. You'll need to wait 20-30 seconds (depending on your machine) while the LLM model consumes the prompt and prepares the answer. Once done, it will print the answer and the 4 sources it used as context from your documents; you can then ask another question without re-running the script, just wait for the prompt again. 
 
 Note: you could turn off your internet connection, and the script inference would still work. No data gets out of your local environment.
 
@@ -57,8 +59,8 @@ Type `exit` to finish the script.
 Selecting the right local models and the power of `LangChain` you can run the entire pipeline locally, without any data leaving your environment, and with reasonable performance.
 
 - `ingest.py` uses `LangChain` tools to parse the document and create embeddings locally using `LlamaCppEmbeddings`. It then stores the result in a local vector database using `Chroma` vector store. 
-- `privateGPT.py` uses a local LLM based on `GPT4All` to understand questions and create answers. The context for the answers is extracted from the local vector store using a similarity search to locate the right piece of context from the docs.
-- `gpt4all_j.py` is a wrapper to support `GPT4All-J` models within LangChain. It was created given such support didn't exist at the moment of creation of this project (only `GPT4All` models where supported). It will be proposed as a contribution to the official `LangChain` repo soon.
+- `privateGPT.py` uses a local LLM based on `GPT4All-J` to understand questions and create answers. The context for the answers is extracted from the local vector store using a similarity search to locate the right piece of context from the docs.
+- `GPT4All-J` wrapper was introduced in LangChain 0.0.162.
 
 # Disclaimer
 This is a test project to validate the feasibility of a fully private solution for question answering using LLMs and Vector embeddings. It is not production ready, and it is not meant to be used in production. The models selection is not optimized for performance, but for privacy; but it is possible to use different models and vectorstores to improve performance.
